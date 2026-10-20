@@ -413,7 +413,7 @@
 
                                     <!-- Buttons -->
                                     <div class="">
-                                        <button type="submit" class="btn btn-info">Simpan</button>
+                                        <button type="submit" class="btn btn-primary btn-info">Simpan</button>
                                         <a href="{{ route('pelanggan.index') }}"
                                             class="btn btn-outline-secondary ms-2">Batal</a>
                                     </div>
