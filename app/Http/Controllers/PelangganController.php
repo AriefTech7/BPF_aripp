@@ -29,14 +29,14 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $data['first_name'] = $request->first_name;
-        $data['last_name'] = $request->last_name;
-        $data['birthday'] = $request->birthday;
-        $data['gender'] = $request->gender;
-        $data['email'] = $request->email;
-        $data['phone'] = $request->phone;
-
+        $data = $request->validate([
+            'first_name'=>'required|string',
+            'last_name'=>'required|string',
+            'birthday'=>'required|date',
+            'gender'=>'required|in:Male,Female',
+            'email'=>'required|email',
+            'phone'=>'required|numeric'
+        ]);
         Pelanggan::create($data);
 
         return redirect()->route('pelanggan.index')->with('success', 'Penambahan Data Berhasil!');
@@ -66,15 +66,15 @@ class PelangganController extends Controller
     {
         $pelanggan_id = $id;
         $pelanggan = Pelanggan::findOrFail($pelanggan_id);
-
-        $pelanggan->first_name = $request->first_name;
-        $pelanggan->last_name = $request->last_name;
-        $pelanggan->birthday = $request->birthday;
-        $pelanggan->gender = $request->gender;
-        $pelanggan->email = $request->email;
-        $pelanggan->phone = $request->phone;
-
-        $pelanggan->save();
+        $result_validate= $request->validate([
+            'first_name'=>'required|string',
+            'last_name'=>'required|string',
+            'birthday'=>'required|date',
+            'gender'=>'required|in:Male,Female',
+            'email'=>'required|email',
+            'phone'=>'required|numeric'
+        ]);
+        $pelanggan->update($result_validate);
         return redirect()->route('pelanggan.index')->with('success', 'Perubahan Data Berhasil!');
     }
 

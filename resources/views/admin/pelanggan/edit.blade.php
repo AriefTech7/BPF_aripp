@@ -370,13 +370,13 @@
                                     <!-- First Name -->
                                     <div class="mb-3">
                                         <label for="first_name" class="form-label">First name</label>
-                                        <input type="text" id="first_name" name="first_name" class="form-control" value="{{ $dataPelanggan->first_name }}" required>
+                                        <input type="text" id="first_name" name="first_name" class="form-control" value="{{ old('first_name'),$dataPelanggan->first_name }}" required>
                                     </div>
 
                                     <!-- Last Name -->
                                     <div class="mb-3">
                                         <label for="last_name" class="form-label">Last name</label>
-                                        <input type="text" id="last_name" name="last_name" class="form-control" value="{{ $dataPelanggan->last_name }}" required>
+                                        <input type="text" id="last_name" name="last_name" class="form-control" value="{{old('last_name'), $dataPelanggan->last_name }}" required>
                                     </div>
                                 </div>
 
@@ -384,7 +384,10 @@
                                     <!-- Birthday -->
                                     <div class="mb-3">
                                         <label for="birthday" class="form-label">Birthday</label>
-                                        <input type="date" id="birthday" name="birthday" class="form-control" value="{{ $dataPelanggan->birthday }}">
+                                        <input type="date" id="birthday" name="birthday" class="form-control" value="{{ old('birthday'),$dataPelanggan->birthday }}">
+                                        @error('birthday')
+                                            <small style="color: red">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Gender -->
@@ -392,9 +395,12 @@
                                         <label for="gender" class="form-label">Gender</label>
                                         <select id="gender" name="gender" class="form-select">
                                             <option value="">-- Pilih --</option>
-                                            <option value="Male"{{$dataPelanggan->gender == 'Male' ? 'selected' : ''}}>Male</option>
-                                            <option value="Female"{{$dataPelanggan->gender == 'Female' ? 'selected' : ''}}>Female</option>
+                                            <option value="Male"{{old('gender'),$dataPelanggan->gender == 'Male' ? 'selected' : ''}}>Male</option>
+                                            <option value="Female"{{old('gender'),$dataPelanggan->gender == 'Female' ? 'selected' : ''}}>Female</option>
                                         </select>
+                                        @error('gender')
+                                            <small style="color: red">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -402,13 +408,19 @@
                                     <!-- Email -->
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="text" id="email" name="email" class="form-control" value="{{ $dataPelanggan->email }}"  required>
+                                        <input type="text" id="email" name="email" class="form-control" value="{{old('email'), $dataPelanggan->email }}"  required>
+                                        @error('email')
+                                            <small style="color: red">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Phone -->
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" id="phone" name="phone" class="form-control" value="{{ $dataPelanggan->phone }}">
+                                        <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone'),$dataPelanggan->phone }}">
+                                        @error('phone')
+                                            <small style="color: red">{{ $message }}</small>
+                                        @enderror
                                     </div>
 
                                     <!-- Buttons -->
